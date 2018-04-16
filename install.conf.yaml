@@ -1,19 +1,22 @@
 - defaults:
-    link:
-      relink: true
+  link:
+    relink: true
 
 - clean: ['~']
 
 - link:
-    ~/.tmux.conf:
-      force: true
-      path: tmux.conf
-    ~/.config/nvim/init.vim:
-      create: true
-      path: init.vim
-    ~/.zshrc:
-      force: true
-      path: zshrc
+  ~/.tmux.conf:
+    force: true
+    path: tmux.conf
+  ~/.config/nvim/init.vim:
+    create: true
+    path: init.vim
+  ~/.zshrc:
+    force: true
+    path: zshrc
+  ~/.config/termite/config:
+    create: true
+    path: termite-config
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
