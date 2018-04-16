@@ -1,0 +1,130 @@
+[options]
+font = EssentialPragmataPro Nerd Font 12
+
+#[colors]
+##foreground =   #dddddd
+##background =   #0f0f0f
+##cursorColor =  #dddddd
+##
+###black
+##color0 =  #0f0f0f
+##color8 =  #222222
+###red
+##color1 =  #ff355d
+##color9 =  #ff6080
+###green
+##color2 =  #77ff35
+##color10 = #b5ff92
+###yellow
+##color3 =  #ff7e35
+##color11 = #ff9a60
+###blue
+##color4 =  #3cd4ff
+##color12 = #95e7fe
+###magenta
+##color5 =  #9e45ff
+##color13 = #ca9afe
+###cyan
+##color6 =  #35ffc7
+##color14 = #92fee0
+###white
+##color7 =  #DDEEDD
+##color15 = #6C887A
+##
+#
+#
+#color0 =       #0f0f0f
+#color8 =       #555555
+#color1 =       #9e4a4d
+#color9 =       #9e4a4d
+#color2 =       #cb484d
+#color10 =      #cb484d
+#color3 =       #a1cfce
+#color11 =      #a1cfce
+#color4 =       #9e7374
+#color12 =      #9e7374
+#color5 =       #d6a04d
+#color13 =      #d6a04d
+#color6 =       #fd9d9f
+#color14 =      #fda0a0
+#color7 =       #f5deb3
+#color15 =      #ffffff
+
+#[colors]
+## hard contrast: background = #1d2021
+#background = #282828
+## soft contrast: background = #32302f
+#foreground = #ebdbb2
+#foreground_bold = #ebdbb2
+#
+## dark0 + gray
+#color0 = #282828
+#color8 = #928374
+#
+## neutral_red + bright_red
+#color1 = #cc241d
+#color9 = #fb4934
+#
+## neutral_green + bright_green
+#color2 = #98971a
+#color10 = #b8bb26
+#
+## neutral_yellow + bright_yellow
+#color3 = #d79921
+#color11 = #fabd2f
+#
+## neutral_blue + bright_blue
+#color4 = #458588
+#color12 = #83a598
+#
+## neutral_purple + bright_purple
+#color5 = #b16286
+#color13 = #d3869b
+#
+## neutral_aqua + faded_aqua
+#color6 = #689d6a
+#color14 = #8ec07c
+#
+## light4 + light1
+#color7 = #a89984
+#color15 = #ebdbb2
+
+[colors]
+
+foreground = #cbe3e7
+background = #1e1c31
+cursorColor = #fbfcfc
+
+# black
+color0 = #565575
+color8 = #100e23
+
+# red
+color1 = #ff8080
+color9 = #ff5458
+
+# green
+color2 = #95ffa4
+color10 = #62d196
+
+# yellow
+color3 = #ffe9aa
+color11 = #ffb378
+
+# blue
+color4 = #91ddff
+color12 = #65b2ff
+
+# magenta
+color5 = #c991e1
+color13 = #906cff
+
+# cyan
+color6 = #aaffe4
+color14 = #63f2f1
+
+# white
+color7 = #cbe3e7
+color15 = #a6b3cc
+
+# vim: ft=dosini cms=#%s

@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.tmux.conf:
+      force: true
+      path: tmux.conf
+    ~/.config/nvim/init.vim:
+      create: true
+      path: init.vim
+    ~/.zshrc:
+      force: true
+      path: zshrc
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf, Cloning FZF]
+  - [~/.fzf/install, Installing FZF]
