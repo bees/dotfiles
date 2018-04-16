@@ -20,5 +20,5 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
-  - [git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf, Cloning FZF]
+  #- [git clone --depth 1 'github.com/junegunn/fzf.git' ~/.fzf, Cloning FZF]
   - [~/.fzf/install, Installing FZF]
