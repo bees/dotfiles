@@ -13,7 +13,7 @@ set tags=./tags;,tags;,.tags;
 " Plugin specific
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 
 " Syntax
@@ -43,9 +43,10 @@ Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/vimproc.vim' "necessary for tsuquyomi
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Quramy/tsuquyomi'
 Plug 'shime/vim-livedown'
 Plug 'mattn/vim-sqlfmt'
@@ -60,6 +61,15 @@ Plug 'joshdick/onedark.vim'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'challenger-deep-theme/vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'mbbill/undotree'
+Plug 'rakr/vim-one'
+Plug 'rakr/vim-two-firewatch'
+Plug 'jnurmine/Zenburn'
+Plug 'acepukas/vim-zenburn'
+Plug 'nightsense/vimspectr'
+Plug 'junegunn/seoul256.vim'
 
 call plug#end()
 
@@ -69,8 +79,11 @@ call plug#end()
 "colo sierra
 set termguicolors
 "let g:gruvbox_contrast_dark = 'dark'
-set background=dark
-colorscheme challenger_deep
+"let g:two_firewatch_italics=1
+"let g:seoul256_background = 256
+"colo seoul256
+colo vimspectr30-light
+
 
 
 " Utilities
@@ -89,7 +102,7 @@ let g:jsx_ext_required = 0
 let g:deoplete#enable_at_startup = 1
 
 " Deoplete Python
-let g:python_host_prog = '/home/ad/projects/alpine/venv/bin/python'
+let g:python3_host_prog = '/home/ad/.pyenv/versions/neovim3/bin/python'
 
 " Vim Jedi
 let g:jedi#auto_vim_configuration = 0
@@ -109,6 +122,7 @@ let g:ale_linters = {
 \}
 
 " vim-markdown
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript']
 
 "gitgutter
@@ -121,15 +135,22 @@ let g:gitgutter_map_keys = 0
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'challenger_deep',
+      \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
+      \             [ 'filepath' ] ],
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
+      \   'filepath': 'MyFilename',
       \ },
       \ }
+
+
+function! MyFilename()
+  return expand('%:f')
+endfunction
 
 " nerdtree
 let g:NERDTreeDirArrowExpandable = ''
