@@ -49,7 +49,7 @@ ZSH_THEME="flazz"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker)
+plugins=(git docker ansible)
 
 # User configuration
 
@@ -153,12 +153,18 @@ fi
 bindkey -v
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr30-light
+eval `dircolors ~/.vimspectr-shell/dircolors`
 
-export NVM_DIR="$HOME/.nvm"
+fpath=(/home/ad/bin/cd-gitroot(N-/) $fpath)
+autoload -Uz cd-gitroot
 
-load-nvm() {
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-}
+
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 export PATH=/home/ad/.yarn/bin:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -169,3 +175,9 @@ export PAGER='less -S'
 alias gcm='git checkout master'
 alias vim='nvim'
 alias get_cred='aws ecr get-login --no-include-email --region us-east-1'
+alias cdg='cd-gitroot'
+hash -d ap="/home/ad/Projects/alpine"
+hash -d gbf="/home/ad/Projects/gb-fin"
+hash -d gbs="/home/ad/Projects/gb-streams"
+
+
