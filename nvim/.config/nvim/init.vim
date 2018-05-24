@@ -1,4 +1,5 @@
 set number
+set relativenumber
 set formatoptions=cro
 set tabstop=2
 set shiftwidth=2
@@ -135,7 +136,7 @@ let g:gitgutter_map_keys = 0
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'spectr30_light',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
@@ -169,6 +170,7 @@ nmap <leader>T :enew<cr>
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
 nmap <C-c> :bp <BAR> bd #<CR>
+
 nmap <leader>bl :ls<CR>
 nmap <leader>a :badd
 nmap <leader>e :NERDTreeToggle<CR>
