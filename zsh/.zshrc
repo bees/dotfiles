@@ -152,7 +152,8 @@ fi
 
 bindkey -v
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -n "$PS1" ] && sh ~/.vimspectr-shell/vimspectr30-light
 eval `dircolors ~/.vimspectr-shell/dircolors`
 
