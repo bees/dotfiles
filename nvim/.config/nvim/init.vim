@@ -51,6 +51,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Quramy/tsuquyomi'
 Plug 'shime/vim-livedown'
 Plug 'mattn/vim-sqlfmt'
+Plug 'vimwiki/vimwiki'
 
 " Fluff
 Plug 'AlessandroYorba/Sierra'
@@ -128,6 +129,9 @@ let g:vim_markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript'
 
 "gitgutter
 let g:gitgutter_map_keys = 0
+
+" vimwiki
+nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 " Fluff
 """""""""""""""""""
