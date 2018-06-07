@@ -2,14 +2,14 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.UpdatePointer
 import XMonad.Hooks.DynamicLog
--- import XMonad.Hooks.EwmhDesktops
-import MyEwmhDesktops
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Cursor
+import XMonad.Util.Paste
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Prompt
 import XMonad.Prompt.Shell
@@ -36,11 +36,8 @@ layout = avoidStruts (tiled ||| three ||| Mirror tiled ||| Full)
      nmaster = 1
      delta   = 3/100
 
-myEwmh x = ewmh x
-
 main = do
-  -- dzenproc <- spawnPipe "dzen2 -fn 'DejaVu Sans Mono:pixelsize=12' -ta l -e 'onstart=lower'"
-  xmonad $ myEwmh defaultConfig {
+  xmonad $ ewmh defaultConfig {
     terminal = "termite",
     manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig,
     -- <+> insertPosition Master Newer
@@ -55,8 +52,6 @@ main = do
     --          updatePointer (TowardsCentre 0.025 0.025),
     borderWidth        = 2,
     normalBorderColor  = "#e07638",
-    focusedBorderColor = "#756758",
-    keys = myKeys <+> keys defaultConfig,
     modMask = mod1Mask,
     handleEventHook = fullscreenEventHook <+> docksEventHook,
     startupHook = do
@@ -72,7 +67,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList [
   ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle"),
   ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 5%+ unmute"),
   ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 5%- unmute"),
-  ((0, xF86XK_MonBrightnessUp), spawn "$HOME/bin/backlight-adjust 2"),
-  ((0, xF86XK_MonBrightnessDown), spawn "$HOME/bin/backlight-adjust -2")
+  ((shiftMask, xK_Insert), pasteSelection)
   ]
 
