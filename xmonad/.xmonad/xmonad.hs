@@ -103,7 +103,7 @@ main = do
     --   ppOutput = hPutStrLn dzenproc
     -- } <+>
     --          updatePointer (TowardsCentre 0.025 0.025),
-    borderWidth        = 2,
+    borderWidth        = 10,
     normalBorderColor  = "#000000",
     focusedBorderColor = "#e07638",
     modMask = mod1Mask,
