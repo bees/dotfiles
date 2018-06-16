@@ -33,6 +33,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'mxw/vim-jsx'
+Plug 'reasonml-editor/vim-reason-plus'
 
 "Utility
 Plug 'tpope/vim-fugitive'
