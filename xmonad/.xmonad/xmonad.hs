@@ -108,6 +108,5 @@ main = do
     focusedBorderColor = "#e07638",
     modMask = mod1Mask,
     handleEventHook = fullscreenEventHook <+> docksEventHook,
-    startupHook = do
-      setDefaultCursor xC_left_ptr
+    startupHook = spawn "~/bin/xmonad-bootstrap"
     }

@@ -1,8 +1,7 @@
 set number
-set relativenumber
 set formatoptions=cro
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent
 set hlsearch
@@ -28,7 +27,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'w0rp/ale'
 Plug 'nikvdp/ejs-syntax'
 Plug 'plasticboy/vim-markdown'
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
@@ -38,6 +37,7 @@ Plug 'reasonml-editor/vim-reason-plus'
 "Utility
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
@@ -49,10 +49,15 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Quramy/tsuquyomi'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'shime/vim-livedown'
 Plug 'mattn/vim-sqlfmt'
 Plug 'vimwiki/vimwiki'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf'
 
 " Fluff
 Plug 'AlessandroYorba/Sierra'
@@ -83,19 +88,37 @@ call plug#end()
 set termguicolors
 "let g:gruvbox_contrast_dark = 'dark'
 "let g:two_firewatch_italics=1
-"let g:seoul256_background = 256
-"colo seoul256
-colo vimspectr30-light
+let g:seoul256_background = 256
+colo seoul256
+"colo vimspectr30-light
 
 
 
 " Utilities
 """""""""""""""""""
 
+" LanguageClient
+
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls']
+    \ }
+
 " fzf
 nnoremap <C-p> :FZF<CR>
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
 
-set rtp+=~/.fzf
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+
+"set rtp+=~/.fzf
 
 " Tagbar
 nmap <leader>t :TagbarToggle<CR>
@@ -106,6 +129,13 @@ let g:deoplete#enable_at_startup = 1
 
 " Deoplete Python
 let g:python3_host_prog = '/home/ad/.pyenv/versions/neovim3/bin/python'
+
+" Deoplete tern
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue'
+                \ ]
 
 " Vim Jedi
 let g:jedi#auto_vim_configuration = 0
@@ -119,10 +149,18 @@ let g:jedi#auto_close_doc = 1
 
 " ale
 let g:ale_linters = {
+\   'vue': ['vls', 'eslint'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint'],
 \   'python': ['flake8', 'pylint'],
 \}
+
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint'],
+\   'vue': ['prettier'],
+\}
+
+"let g:ale_fix_on_save = 1
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -141,7 +179,7 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'spectr30_light',
+      \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
@@ -183,9 +221,7 @@ nmap <leader>e :NERDTreeToggle<CR>
 " syntax specific rules
 """""""""""""""""""
 
-au FileType javascript  setl sw=2 sts=2 et
+au FileType javascript,jsx  setl sw=4 sts=4 et
 au FileType json        setl sw=2 sts=2 et
 au FileType vue         setl sw=2 sts=2 et
 au FileType python      setl sw=4 sts=4 et
-au FileType c           setl sw=4 sts=4 et
-
