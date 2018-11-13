@@ -7,7 +7,7 @@ set autoindent
 set hlsearch
 set hidden
 set backspace=indent,eol,start
-set directory=$HOME/.config/nvim/swapfiles//
+set directory=$HOME/.local/share/nvim/swap/
 set tags=./tags;,tags;,.tags;
 
 " Plugin specific
