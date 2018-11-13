@@ -46,8 +46,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+Plug 'sebastianmarkow/deoplete-rust'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'shime/vim-livedown'
@@ -67,7 +69,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'joshdick/onedark.vim'
 Plug 'cseelus/vim-colors-lucid'
-Plug 'challenger-deep-theme/vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -88,9 +90,10 @@ call plug#end()
 set termguicolors
 "let g:gruvbox_contrast_dark = 'dark'
 "let g:two_firewatch_italics=1
-let g:seoul256_background = 256
-colo seoul256
+"let g:seoul256_background = 256
+"colo seoul256
 "colo vimspectr30-light
+colorscheme challenger_deep
 
 
 
@@ -126,6 +129,7 @@ nmap <leader>t :TagbarToggle<CR>
 " Deoplete
 let g:jsx_ext_required = 0
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('complete_method', 'omnifunc')
 
 " Deoplete Python
 let g:python3_host_prog = '/home/ad/.pyenv/versions/neovim3/bin/python'
@@ -136,6 +140,11 @@ let g:deoplete#sources#ternjs#filetypes = [
                 \ 'javascript.jsx',
                 \ 'vue'
                 \ ]
+
+" Deoplete rust
+let g:deoplete#sources#rust#racer_binary='/home/ad/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/ad/Documents/rust'
+
 
 " Vim Jedi
 let g:jedi#auto_vim_configuration = 0
@@ -152,15 +161,21 @@ let g:ale_linters = {
 \   'vue': ['vls', 'eslint'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint'],
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8', 'pylint', 'mypy'],
 \}
+
+let g:ale_python_mypy_options = '--ignore-missing-imports'
 
 let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier'],
+\   'python': ['black', 'trim_whitespace', 'remove_trailing_lines'],
+\   'sql': ['sqlfmt', 'trim_whitespace', 'remove_trailing_lines'],
 \}
 
-"let g:ale_fix_on_save = 1
+let g:ale_python_black_options = '-l 79'
+
+let g:ale_fix_on_save = 1
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -179,7 +194,7 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
@@ -199,6 +214,21 @@ endfunction
 " nerdtree
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
+
+
+" nerdtree git plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "u",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 
 " Misc
@@ -225,3 +255,4 @@ au FileType javascript,jsx  setl sw=4 sts=4 et
 au FileType json        setl sw=2 sts=2 et
 au FileType vue         setl sw=2 sts=2 et
 au FileType python      setl sw=4 sts=4 et
+au FileType proto       setl sw=4 sts=4 et
