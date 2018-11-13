@@ -1,6 +1,7 @@
 source ~/.zplug/init.zsh
 
 # utilities
+zplug "zsh-users/zsh-history-substring-search"
 zplug "mollifier/cd-gitroot", as:command
 zplug "plugins/git", from:oh-my-zsh
 zplug "junegunn/fzf-bin", \
