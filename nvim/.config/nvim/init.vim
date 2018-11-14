@@ -80,6 +80,7 @@ Plug 'jnurmine/Zenburn'
 Plug 'acepukas/vim-zenburn'
 Plug 'nightsense/vimspectr'
 Plug 'junegunn/seoul256.vim'
+Plug 'atelierbram/Base2Tone-vim'
 
 call plug#end()
 
@@ -88,12 +89,16 @@ call plug#end()
 "let g:sierra_Midnight = 1
 "colo sierra
 set termguicolors
+if has('nvim')
+  " https://github.com/neovim/neovim/wiki/FAQ
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+endif
 "let g:gruvbox_contrast_dark = 'dark'
 "let g:two_firewatch_italics=1
 "let g:seoul256_background = 256
 "colo seoul256
 "colo vimspectr30-light
-colorscheme challenger_deep
+colorscheme Base2Tone_EveningDark
 
 
 
@@ -194,7 +199,7 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'challenger_deep',
+      \ 'colorscheme': 'Base2Tone_Evening',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
