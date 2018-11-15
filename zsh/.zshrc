@@ -42,7 +42,7 @@ export PAGER='less -S'
 
 alias vim='nvim'
 alias get_cred='aws ecr get-login --no-include-email --region us-east-1'
-alias cdg='cd-gitroot'
+alias cdg='cdgitroot'
 alias ls='exa'
 
 hash -d ens="/home/ad/work/enrollments-svc"
@@ -80,3 +80,23 @@ SPACESHIP_CHAR_SUFFIX=" "
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# functions
+
+# cd-gitroot (cant get zplug to work)
+
+function cdgitroot() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) != 'true' ]]; then
+    cdgitroot_print_error "Not in a git repository"
+    return 1
+  fi
+
+  local relative_path="$1"
+  local root_path=$(git rev-parse --show-toplevel)
+
+  if [ -n "$relative_path" ]; then
+    cd "$root_path/$relative_path"
+  else
+    cd "$root_path"
+  fi
+}
