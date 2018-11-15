@@ -1,14 +1,17 @@
+" essentials
 set number
-set formatoptions=cro
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
 set hlsearch
+set formatoptions=cro
 set hidden
 set backspace=indent,eol,start
+
+
+" centralize swapfiles
 set directory=$HOME/.local/share/nvim/swap/
-set tags=./tags;,tags;,.tags;
 
 " Plugin specific
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -64,6 +67,7 @@ Plug 'atelierbram/Base2Tone-vim'
 
 call plug#end()
 
+
 " Theme
 """""""""""""""""""
 "let g:sierra_Midnight = 1
@@ -74,7 +78,6 @@ if has('nvim')
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 endif
 colorscheme tone
-
 
 
 " Utilities
