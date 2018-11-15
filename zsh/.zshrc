@@ -1,8 +1,15 @@
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+export HISTSIZE=2000
+export HISTFILE="$HOME/.zsh_history"
+export SAVEHIST=$HISTSIZE
+
+
 source ~/.zplug/init.zsh
+
 
 # utilities
 zplug "zsh-users/zsh-history-substring-search"
-zplug "mollifier/cd-gitroot", as:command
 zplug "plugins/git", from:oh-my-zsh
 zplug "junegunn/fzf-bin", \
     from:gh-r, \
