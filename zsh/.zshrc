@@ -17,6 +17,11 @@ zplug "junegunn/fzf-bin", \
     rename-to:fzf, \
     use:"*linux*amd64*"
 
+zplug "peco/peco", \
+    from:gh-r, \
+    as:command, \
+    use:"peco"
+
 # fluff
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
