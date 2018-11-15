@@ -226,7 +226,8 @@ nmap <C-c> :bp <BAR> bd #<CR>
 
 nmap <leader>bl :ls<CR>
 nmap <leader>a :badd
-nmap <leader>e :NERDTreeToggle<CR>
+nmap <leader>e :NERDTreeFocus<CR>
+nmap <leader>E :NERDTreeToggle<CR>
 
 " syntax specific rules
 """""""""""""""""""
