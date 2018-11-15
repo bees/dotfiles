@@ -17,22 +17,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 
 " Syntax
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
-Plug 'wavded/vim-stylus'
-Plug 'digitaltoad/vim-pug'
-Plug 'sophacles/vim-bundle-mako'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'w0rp/ale'
 Plug 'nikvdp/ejs-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
 Plug 'mxw/vim-jsx'
-Plug 'reasonml-editor/vim-reason-plus'
 
 "Utility
 Plug 'tpope/vim-fugitive'
@@ -46,40 +34,32 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
-Plug 'sebastianmarkow/deoplete-rust'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'shime/vim-livedown'
-Plug 'mattn/vim-sqlfmt'
-Plug 'vimwiki/vimwiki'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'w0rp/ale'
 Plug 'junegunn/fzf'
+Plug 'mbbill/undotree'
 
 " Fluff
-Plug 'AlessandroYorba/Sierra'
-Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'joshdick/onedark.vim'
-Plug 'cseelus/vim-colors-lucid'
+Plug 'Yggdroot/indentLine'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'mbbill/undotree'
-Plug 'rakr/vim-one'
-Plug 'rakr/vim-two-firewatch'
-Plug 'jnurmine/Zenburn'
-Plug 'acepukas/vim-zenburn'
-Plug 'nightsense/vimspectr'
-Plug 'junegunn/seoul256.vim'
+Plug 'cseelus/vim-colors-lucid'
+Plug 'cseelus/vim-colors-tone'
+"Plug 'rakr/vim-one'
+"Plug 'rakr/vim-two-firewatch'
+"Plug 'jnurmine/Zenburn'
+"Plug 'acepukas/vim-zenburn'
+
 Plug 'atelierbram/Base2Tone-vim'
 
 call plug#end()
@@ -93,12 +73,7 @@ if has('nvim')
   " https://github.com/neovim/neovim/wiki/FAQ
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 endif
-"let g:gruvbox_contrast_dark = 'dark'
-"let g:two_firewatch_italics=1
-"let g:seoul256_background = 256
-"colo seoul256
-"colo vimspectr30-light
-colorscheme Base2Tone_EveningDark
+colorscheme tone
 
 
 
@@ -199,7 +174,7 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'Base2Tone_Evening',
+      \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
