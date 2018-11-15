@@ -60,6 +60,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'junegunn/fzf'
+Plug 'zchee/deoplete-clang'
+Plug 'ElmCast/elm-vim'
 
 " Fluff
 Plug 'AlessandroYorba/Sierra'
@@ -150,6 +152,15 @@ let g:deoplete#sources#ternjs#filetypes = [
 let g:deoplete#sources#rust#racer_binary='/home/ad/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path='/home/ad/Documents/rust'
 
+" deoplete clang
+let g:deoplete#sources#clang#libclang_path = '/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/lib/clang'
+
+"deoplete elm
+
+"let g:deoplete#omni#functions.elm = ['elm#Complete']
+"let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
+"let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources
 
 " Vim Jedi
 let g:jedi#auto_vim_configuration = 0
