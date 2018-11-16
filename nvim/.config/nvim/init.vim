@@ -240,3 +240,4 @@ au FileType json        setl sw=2 sts=2 et
 au FileType vue         setl sw=2 sts=2 et
 au FileType python      setl sw=4 sts=4 et
 au FileType proto       setl sw=4 sts=4 et
+au FileType yml,yaml    setl sw=2 sts=2 et
