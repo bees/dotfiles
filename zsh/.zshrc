@@ -4,6 +4,11 @@ export HISTSIZE=2000
 export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=$HISTSIZE
 
+autoload -Uz compinit
+compinit
+
+kitty + complete setup zsh | source /dev/stdin
+
 
 source ~/.zplug/init.zsh
 
