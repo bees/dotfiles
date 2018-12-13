@@ -9,6 +9,7 @@ set hidden
 set backspace=indent,eol,start
 set directory=$HOME/.config/nvim/swapfiles//
 set tags=./tags;,tags;,.tags;
+set encoding=UTF-8
 
 " Plugin specific
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -67,7 +68,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'joshdick/onedark.vim'
 Plug 'cseelus/vim-colors-lucid'
-Plug 'challenger-deep-theme/vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -88,8 +89,8 @@ call plug#end()
 set termguicolors
 "let g:gruvbox_contrast_dark = 'dark'
 "let g:two_firewatch_italics=1
-let g:seoul256_background = 256
-colo seoul256
+"let g:seoul256_background = 256
+colo challenger_deep
 "colo vimspectr30-light
 
 
@@ -156,6 +157,7 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
+\   'python': ['black'],
 \   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier'],
 \}
@@ -179,7 +181,7 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
