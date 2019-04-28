@@ -1,3 +1,4 @@
+scriptencoding utf-8
 set number
 set formatoptions=cro
 set tabstop=4
@@ -44,14 +45,15 @@ Plug 'mattn/emmet-vim'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
-Plug 'sebastianmarkow/deoplete-rust'
+"Plug 'zchee/deoplete-jedi'
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+"Plug 'sebastianmarkow/deoplete-rust'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'davidhalter/jedi-vim'
+Plug 'reasonml-editor/vim-reason-plus'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'shime/vim-livedown'
 Plug 'mattn/vim-sqlfmt'
 Plug 'vimwiki/vimwiki'
@@ -62,6 +64,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 Plug 'zchee/deoplete-clang'
 Plug 'ElmCast/elm-vim'
+Plug 'jxnblk/vim-mdx-js'
 
 " Fluff
 Plug 'AlessandroYorba/Sierra'
@@ -83,6 +86,7 @@ Plug 'acepukas/vim-zenburn'
 Plug 'nightsense/vimspectr'
 Plug 'junegunn/seoul256.vim'
 Plug 'atelierbram/Base2Tone-vim'
+Plug 'chrisbra/Colorizer'
 
 call plug#end()
 
@@ -95,12 +99,12 @@ if has('nvim')
   " https://github.com/neovim/neovim/wiki/FAQ
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 endif
-"let g:gruvbox_contrast_dark = 'dark'
 "let g:two_firewatch_italics=1
 "let g:seoul256_background = 256
 "colo seoul256
 "colo vimspectr30-light
-colorscheme Base2Tone_EveningDark
+colorscheme challenger_deep
+
 
 
 
@@ -133,61 +137,30 @@ let g:fzf_action = {
 " Tagbar
 nmap <leader>t :TagbarToggle<CR>
 
-" Deoplete
-let g:jsx_ext_required = 0
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('complete_method', 'omnifunc')
-
-" Deoplete Python
-let g:python3_host_prog = '/home/ad/.pyenv/versions/neovim3/bin/python'
-
-" Deoplete tern
-let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue'
-                \ ]
-
-" Deoplete rust
-let g:deoplete#sources#rust#racer_binary='/home/ad/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/ad/Documents/rust'
-
-" deoplete clang
-let g:deoplete#sources#clang#libclang_path = '/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/lib/clang'
-
-"deoplete elm
-
-"let g:deoplete#omni#functions.elm = ['elm#Complete']
-"let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-"let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources
-
-" Vim Jedi
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
-let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
-let g:jedi#rename_command = '<Leader>gR'
-let g:jedi#usages_command = '<Leader>gu'
-let g:jedi#completions_enabled = 0
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#auto_close_doc = 1
 
 " ale
 let g:ale_linters = {
 \   'vue': ['vls', 'eslint'],
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint'],
 \   'python': ['flake8', 'pylint', 'mypy'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'vim': ['vint'],
+\   'haskell': [],
 \}
 
 let g:ale_python_mypy_options = '--ignore-missing-imports'
 
 let g:ale_fixers = {
-\   'javascript': ['prettier', 'eslint'],
 \   'vue': ['prettier'],
 \   'python': ['black', 'trim_whitespace', 'remove_trailing_lines'],
 \   'sql': ['sqlfmt', 'trim_whitespace', 'remove_trailing_lines'],
+\   'elixir': ['mix_format'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier'],
+\   'reason': ['refmt'],
 \}
+
+let g:ale_linters_ignore = {'typescript': ['tslint', 'eslint']}
 
 let g:ale_python_black_options = '-l 79'
 
@@ -200,6 +173,7 @@ let g:vim_markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript'
 "gitgutter
 let g:gitgutter_map_keys = 0
 
+
 " vimwiki
 nmap <Leader>tt <Plug>VimwikiToggleListItem
 
@@ -210,15 +184,17 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'Base2Tone_Evening',
+      \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
+      \             [ 'cocstatus' ],
       \             [ 'filepath' ] ],
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'filepath': 'MyFilename',
+      \   'cocstatus': 'coc#status',
       \ },
       \ }
 
@@ -227,6 +203,8 @@ function! MyFilename()
   return expand('%:f')
 endfunction
 
+
+
 " nerdtree
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
@@ -234,18 +212,20 @@ let g:NERDTreeDirArrowCollapsible = ''
 
 " nerdtree git plugin
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "u",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
+    \ 'Modified'  : '✹',
+    \ 'Staged'    : '✚',
+    \ 'Untracked' : 'u',
+    \ 'Renamed'   : '➜',
+    \ 'Unmerged'  : '═',
+    \ 'Deleted'   : '✖',
+    \ 'Dirty'     : '✗',
+    \ 'Clean'     : '✔︎',
     \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
+    \ 'Unknown'   : '?'
     \ }
 
+
+let g:colorizer_auto_filetype='jsx,css,html,dosini'
 
 " Misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -253,7 +233,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " mappings
 """""""""""""""""""
 
-let mapleader=" "
+let mapleader=' '
 map <f12> :!start /min ctags -R .<cr>
 nmap <leader>T :enew<cr>
 nmap <leader>l :bnext<CR>
@@ -264,11 +244,18 @@ nmap <leader>bl :ls<CR>
 nmap <leader>a :badd
 nmap <leader>e :NERDTreeToggle<CR>
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " syntax specific rules
 """""""""""""""""""
 
-au FileType javascript,jsx  setl sw=4 sts=4 et
+au FileType javascript,jsx  setl sw=2 sts=2 et
 au FileType json        setl sw=2 sts=2 et
 au FileType vue         setl sw=2 sts=2 et
 au FileType python      setl sw=4 sts=4 et
 au FileType proto       setl sw=4 sts=4 et
+au FileType reason  setl sw=2 sts=2 et
+
