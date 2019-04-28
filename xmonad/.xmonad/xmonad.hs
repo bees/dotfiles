@@ -3,7 +3,7 @@ import XMonad
 import XMonad
 import Data.Monoid
 import System.Exit
- 
+
 import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS
@@ -23,7 +23,11 @@ import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
+
 import qualified Data.Map as M
+import qualified DBus as D
+import qualified DBus.Client as D
+import qualified Codec.Binary.UTF8.String as UTF8
 
 -- based off of (read: stolen from) https://github.com/bdowning/dotfiles/tree/master/host-firnen/xmonad
 
@@ -32,8 +36,6 @@ myLauncher = "rofi -show"
 myManageHook = composeAll
   [ className =? "Squeak" --> doFloat
   , className =? "Plugin-container" --> doFloat
-  , title =? "Saleae Logic Software" --> doFloat
-  , title =? "Logic" --> doIgnore
   , isDialog --> doCenterFloat
   , isFullscreen --> doFullFloat
   ]
@@ -55,6 +57,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((shiftMask, xK_Insert), pasteSelection)
     , ((modm, xK_p ), spawn myLauncher )
     , ((modm, xK_Return ), spawn "termite" )
+    , ((modm .|. shiftMask, xK_Return ), spawn "termite -d $(xcwd)" )
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
@@ -88,25 +91,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+
 main = do
   xmonad $ ewmh defaultConfig {
     terminal = "termite",
     keys = myKeys,
+    workspaces = ["1", "2", "3", "4", "5", "6"],
     manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig,
-     -- <+> insertPosition Master Newer
     layoutHook = smartBorders $ layout,
-    --logHook = dynamicLogWithPP xmobarPP {
-    --  ppOutput = hPutStrLn xmproc,
-    --  ppTitle = xmobarColor "green" ""
-    --  } <+> updatePointer (TowardsCentre 0.025 0.025),
-    --logHook = -- dynamicLogWithPP dzenPP {
-    --   ppOutput = hPutStrLn dzenproc
-    -- } <+>
-    --          updatePointer (TowardsCentre 0.025 0.025),
     borderWidth        = 10,
-    normalBorderColor  = "#000000",
-    focusedBorderColor = "#e07638",
+    normalBorderColor  = "#1e1c31",
+    focusedBorderColor = "#aaffe4",
     modMask = mod1Mask,
     handleEventHook = fullscreenEventHook <+> docksEventHook,
-    startupHook = spawn "~/bin/xmonad-bootstrap"
+    startupHook = spawn "setxkbmap -option caps:ctrl_modifier"
+        <+> spawn "/home/ad/.fehbg"
+        <+> spawn "xsetroot -cursor_name left_ptr"
+        <+> spawn "compton"
     }
