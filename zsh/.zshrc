@@ -1,4 +1,9 @@
 source ~/.zplug/init.zsh
+setopt NO_BEEP
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
 # utilities
 zplug "zsh-users/zsh-history-substring-search"
@@ -22,7 +27,7 @@ fi
 
 zplug load # --verbose
 
-export PATH="$HOME/.local/bin/:$HOME/.yarn/bin:$HOME/go/bin/:$PATH"
+export PATH="$HOME/.local/bin/:$HOME/.yarn/bin_packages/bin/:$HOME/go/bin/:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -32,9 +37,6 @@ alias vim='nvim'
 alias get_cred='aws ecr get-login --no-include-email --region us-east-1'
 alias cdg='cd-gitroot'
 alias ls='exa'
-
-hash -d ens="/home/ad/work/enrollments-svc"
-hash -d sas="/home/ad/work/sales-aggr-svc"
 
 export TERM=xterm-256color
 
@@ -50,9 +52,6 @@ SPACESHIP_PROMPT_ORDER=(
   dir
   host
   git
-  node
-  venv
-  aws
   line_sep
   jobs
   char
@@ -68,3 +67,6 @@ SPACESHIP_CHAR_SUFFIX=" "
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# opam configuration
+test -r /home/ad/.opam/opam-init/init.zsh && . /home/ad/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
