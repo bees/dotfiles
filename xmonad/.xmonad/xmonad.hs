@@ -107,5 +107,4 @@ main = do
     startupHook = spawn "setxkbmap -option caps:ctrl_modifier"
         <+> spawn "/home/ad/.fehbg"
         <+> spawn "xsetroot -cursor_name left_ptr"
-        <+> spawn "compton"
     }
