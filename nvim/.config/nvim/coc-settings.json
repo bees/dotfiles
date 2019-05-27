@@ -1,0 +1,18 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "python.formatting.provider": "black",
+  "python.pipenvPath": "/home/ad/.local/bin/pipenv",
+  "python.sortImports.path": "/home/ad/.local/bin/isort",
+  "python.jediEnabled": false,
+  "python.linting.mypyArgs": ["--ignore-missing-imports"],
+  "languageserver": {
+    "reason": {
+      "command": "/home/ad/.local/bin/reason-language-server.exe",
+      "filetypes": ["reason"]
+    },
+     "elixirLS": {
+      "command": "/home/ad/language_servers/elixir_ls/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+     }
+  }
+}

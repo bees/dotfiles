@@ -8,7 +8,7 @@ set hlsearch
 set hidden
 set backspace=indent,eol,start
 set directory=$HOME/.config/nvim/swapfiles//
-set tags=./tags;,tags;,.tags;
+set updatetime=100
 set encoding=UTF-8
 
 " Plugin specific
@@ -34,6 +34,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'mxw/vim-jsx'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'jxnblk/vim-mdx-js'
 
 "Utility
 Plug 'tpope/vim-fugitive'
@@ -42,15 +43,16 @@ Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
-Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
-Plug 'davidhalter/jedi-vim'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+"Plug 'zchee/deoplete-jedi'
+"Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'shime/vim-livedown'
 Plug 'mattn/vim-sqlfmt'
 Plug 'vimwiki/vimwiki'
@@ -59,6 +61,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'junegunn/fzf'
+Plug 'editorconfig/editorconfig-vim'
 
 " Fluff
 Plug 'AlessandroYorba/Sierra'
@@ -79,6 +82,12 @@ Plug 'jnurmine/Zenburn'
 Plug 'acepukas/vim-zenburn'
 Plug 'nightsense/vimspectr'
 Plug 'junegunn/seoul256.vim'
+Plug 'Soares/base16.nvim'
+Plug 'daviesjamie/vim-base16-lightline'
+"Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'kristijanhusak/defx-git'
+"Plug 'kristijanhusak/defx-icons'
+
 
 call plug#end()
 
@@ -87,7 +96,9 @@ call plug#end()
 "let g:sierra_Midnight = 1
 "colo sierra
 set termguicolors
-"let g:gruvbox_contrast_dark = 'dark'
+"set background=dark
+"let g:gruvbox_contrast_dark = 'hard'
+"let g:gruvbox_italic = 1
 "let g:two_firewatch_italics=1
 "let g:seoul256_background = 256
 colo challenger_deep
@@ -139,30 +150,40 @@ let g:deoplete#sources#ternjs#filetypes = [
                 \ ]
 
 " Vim Jedi
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
-let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
-let g:jedi#rename_command = '<Leader>gR'
-let g:jedi#usages_command = '<Leader>gu'
-let g:jedi#completions_enabled = 0
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#auto_close_doc = 1
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#goto_assignments_command = ''  " dynamically done for ft=python.
+"let g:jedi#goto_definitions_command = ''  " dynamically done for ft=python.
+"let g:jedi#rename_command = '<Leader>gR'
+"let g:jedi#usages_command = '<Leader>gu'
+"let g:jedi#completions_enabled = 0
+"let g:jedi#smart_auto_mappings = 1
+"let g:jedi#auto_close_doc = 1
 
 " ale
 let g:ale_linters = {
 \   'vue': ['vls', 'eslint'],
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint'],
-\   'python': ['flake8', 'pylint'],
 \}
 
+"\   'python': ['flake8', 'mypy'],
+
+"let g:ale_python_black_options  = '--fast --line-length=88'
+
+" \   'python': ['black'],
 let g:ale_fixers = {
-\   'python': ['black'],
-\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier'],
+\   'javascript': ['prettier'],
+\   'tsx': ['tslint'],
 \   'vue': ['prettier'],
+\   'mdx': ['prettier'],
+\   'json': ['prettier'],
 \}
 
-"let g:ale_fix_on_save = 1
+"\   'javascript': ['prettier', 'eslint'],
+"\   'yaml': ['prettier'],
+
+let g:ale_fix_on_save = 1
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -170,6 +191,7 @@ let g:vim_markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript'
 
 "gitgutter
 let g:gitgutter_map_keys = 0
+let g:gitgutter_grep = 'rg'
 
 " vimwiki
 nmap <Leader>tt <Plug>VimwikiToggleListItem
@@ -181,15 +203,20 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'challenger_deep',
+      \'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
-      \             [ 'filepath' ] ],
+      \             [ 'gitbranch', 'readonly', 'modified', 'cocstatus' ],
+      \             [ 'filepath',  ] ],
+      \   'right': [
+      \              [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'filepath': 'MyFilename',
+      \   'cocstatus': 'coc#status',
       \ },
       \ }
 
@@ -220,10 +247,22 @@ nmap <leader>bl :ls<CR>
 nmap <leader>a :badd
 nmap <leader>e :NERDTreeToggle<CR>
 
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+" coc
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+
 " syntax specific rules
 """""""""""""""""""
 
 au FileType javascript,jsx  setl sw=4 sts=4 et
+au FileType typescript,tsx  setl sw=4 sts=4 et
 au FileType json        setl sw=2 sts=2 et
 au FileType vue         setl sw=2 sts=2 et
 au FileType python      setl sw=4 sts=4 et
+
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
