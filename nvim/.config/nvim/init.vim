@@ -52,9 +52,9 @@ Plug 'slashmili/alchemist.vim'
 " Fluff
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'joshdick/onedark.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'joshdick/onedark.vim'
 
 
 call plug#end()
@@ -74,6 +74,8 @@ function! s:build_quickfix_list(lines)
   copen
   cc
 endfunction
+
+let g:fzf_layout = { 'window': '10new' }
 
 let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
@@ -149,6 +151,7 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 nmap <silent> <leader><Enter> :CocList buffers<cr>
 nmap <silent> <leader>m :CocList mru<cr>
+nmap <silent> <c-h> :TmuxNavigateLeft<cr>
 
 " syntax specific rules
 """""""""""""""""""
