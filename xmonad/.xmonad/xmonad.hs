@@ -3,7 +3,7 @@ import XMonad
 import XMonad
 import Data.Monoid
 import System.Exit
- 
+
 import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS
@@ -54,7 +54,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 5%- unmute")
     , ((shiftMask, xK_Insert), pasteSelection)
     , ((modm, xK_p ), spawn myLauncher )
-    , ((modm, xK_Return ), spawn "termite" )
+    , ((modm, xK_Return ), spawn "kitty" )
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
@@ -90,7 +90,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 main = do
   xmonad $ ewmh defaultConfig {
-    terminal = "termite",
+    terminal = "kitty",
     keys = myKeys,
     manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig,
      -- <+> insertPosition Master Newer
@@ -103,10 +103,13 @@ main = do
     --   ppOutput = hPutStrLn dzenproc
     -- } <+>
     --          updatePointer (TowardsCentre 0.025 0.025),
-    borderWidth        = 10,
+    borderWidth        = 0,
     normalBorderColor  = "#000000",
     focusedBorderColor = "#e07638",
     modMask = mod1Mask,
     handleEventHook = fullscreenEventHook <+> docksEventHook,
-    startupHook = spawn "~/bin/xmonad-bootstrap"
+    startupHook =
+        spawn "compton --backend glx --xrender-sync --xrender-sync-fence -f -i 0.95 -D 5"
+        <+> spawn "xsetroot -cursor_name left-ptr"
+        <+> spawn "/home/ad/.fehbg"
     }
