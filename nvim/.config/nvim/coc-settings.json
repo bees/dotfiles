@@ -1,7 +1,8 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["python"],
-  "tsserver.npm": "/home/ad/.config/nvm/versions/node/v12.6.0/bin/npm",
-  "backup.coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "typescript.tsx"],
+  "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "typescript", "javascriptreact", "typescriptreact", "reason", "mdx"],
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "backup.tsserver.npm": "/home/ad/.config/nvm/versions/node/v12.6.0/bin/npm",
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length=88"],
   "python.pipenvPath": "/home/ad/.local/bin/pipenv",
@@ -13,9 +14,14 @@
       "command": "/home/ad/.local/bin/reason-language-server",
       "filetypes": ["reason"]
     },
-     "elixirLS": {
+    "elixirLS": {
       "command": "/home/ad/language_servers/elixir_ls/language_server.sh",
       "filetypes": ["elixir", "eelixir"]
-     }
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["vim", "yaml"]
+    }
   }
 }

@@ -7,11 +7,9 @@ source ~/.zplug/init.zsh
 
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 zplug mafredri/zsh-async, from:github
-#zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug mollifier/cd-gitroot
 zplug zsh-users/zsh-completions
 zplug peco/peco, from:gh-r, as:command, use:"*linux*amd64*"
-zplug wata727/tflint, from:gh-r, as:command, use:"*linux*amd64*"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -22,13 +20,14 @@ fi
 zplug load
 
 
-#export TERM=xterm-256color
+export TERM=xterm-256color
 
 bindkey -v
 
 
 
-export PATH="/home/ad/.cabal/bin:/home/ad/.local/bin:/home/ad/.yarn/bin:/home/ad/.pyenv/bin:/home/ad/.dotnet:$PATH"
+#export PATH="/home/ad/.cabal/bin:/home/ad/.local/bin:/home/ad/.yarn/bin:/home/ad/.pyenv/bin:/home/ad/.dotnet:$PATH"
+export PATH="/home/ad/.yarn/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -39,36 +38,22 @@ alias vim='nvim'
 alias get_cred='aws ecr get-login --no-include-email --region us-east-1'
 alias cdg='cd-gitroot'
 alias ls='exa'
-# alias bat='bat --theme=gruvbox'
-alias onelogin='onelogin-aws-login --regenerate --profile default'
 alias scale2="gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"[{'Gdk/WindowScalingFactor', <2>}]\""
 alias scale1="gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"[{'Gdk/WindowScalingFactor', <1>}]\""
-hash -d ui="/home/ad/work/ui"
-hash -d svc="/home/ad/work/services"
-hash -d libs="/home/ad/work/libs"
-hash -d infra="/home/ad/work/infra"
-hash -d contracts="/home/ad/work/contracts"
-
+export BAT_THEME="GitHub"
+alias bat="bat --theme=${BAT_THEME}"
 
 # addon configs
 
 
 # fzf
-[ -f $HOME/.fzf/completion.zsh ]   && source $HOME/.fzf/completion.zsh
-[ -f $HOME/.fzf/key-bindings.zsh ] && source $HOME/.fzf/key-bindings.zsh
-export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DIR="/usr/share/fzf"
+[ -f $FZF_DIR/completion.zsh ]   && source $FZF_DIR/completion.zsh
+[ -f $FZF_DIR/key-bindings.zsh ] && source $FZF_DIR/key-bindings.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --theme=gruvbox --color=always --style=header,grid --line-range :300 {}'"
+export FZF_CTRL_T_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --theme=${BAT_THEME} --color=always --style=header,grid --line-range :300 {}'"
 
-
-# pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-# pure
-
-export PURE_PROMPT_SYMBOL="»"
-export PURE_PROMPT_VICMD_SYMBOL="«"
 
 # spaceship
 export SPACESHIP_CHAR_SYMBOL="» "
@@ -89,184 +74,14 @@ SPACESHIP_PROMPT_ORDER=(
   )
 
 # bat
-#export BAT_PAGER="less -RF"
+export BAT_PAGER="less -RF"
 
-
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+# asdf
 
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash
 
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
+export NVM_DIR="$HOME/.config/nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

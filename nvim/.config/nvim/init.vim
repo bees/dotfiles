@@ -1,7 +1,7 @@
 set number
 set formatoptions=cro
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent
 set hlsearch
@@ -28,6 +28,9 @@ Plug 'reasonml-editor/vim-reason-plus'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+Plug 'gleam-lang/gleam.vim'
 
 "Utility
 Plug 'tpope/vim-fugitive'
@@ -55,6 +58,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'https://git.sr.ht/~romainl/vim-bruin'
 
 
 call plug#end()
@@ -63,7 +67,7 @@ call plug#end()
 """""""""""""""""""
 let g:onedark_terminal_italics=1
 set termguicolors
-colorscheme onedark
+colorscheme bruin
 
 " Utilities
 """""""""""""""""""
@@ -75,8 +79,6 @@ function! s:build_quickfix_list(lines)
   cc
 endfunction
 
-let g:fzf_layout = { 'window': '10new' }
-
 let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
@@ -87,6 +89,7 @@ let g:fzf_action = {
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript']
+let g:vim_markdown_new_list_item_indent = 2
 
 "gitgutter
 let g:gitgutter_map_keys = 0
@@ -102,7 +105,7 @@ nmap <Leader>tt <Plug>VimwikiToggleListItem
 
 set laststatus=2
 let g:lightline = {
-      \'colorscheme': 'onedark',
+      \'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'modified', 'cocstatus' ],
@@ -156,8 +159,8 @@ nmap <silent> <c-h> :TmuxNavigateLeft<cr>
 " syntax specific rules
 """""""""""""""""""
 
-au FileType javascript,jsx  setl sw=4 sts=4 et
-au FileType typescript,tsx  setl sw=4 sts=4 et
+au FileType javascript,jsx  setl sw=2 sts=2 et
+au FileType typescript,tsx  setl sw=2 sts=2 et
 au FileType json        setl sw=2 sts=2 et
 au FileType vue         setl sw=2 sts=2 et
 au FileType python      setl sw=4 sts=4 et
