@@ -27,7 +27,7 @@ bindkey -v
 
 
 #export PATH="/home/ad/.cabal/bin:/home/ad/.local/bin:/home/ad/.yarn/bin:/home/ad/.pyenv/bin:/home/ad/.dotnet:$PATH"
-export PATH="/home/ad/.yarn/bin:$PATH"
+export PATH="/home/ad/.asdf/installs/nodejs/12.13.0/.npm/bin:/home/ad/.asdf/installs/rust/stable/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -40,7 +40,7 @@ alias cdg='cd-gitroot'
 alias ls='exa'
 alias scale2="gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"[{'Gdk/WindowScalingFactor', <2>}]\""
 alias scale1="gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"[{'Gdk/WindowScalingFactor', <1>}]\""
-export BAT_THEME="GitHub"
+export BAT_THEME="Sublime\ Snazzy"
 alias bat="bat --theme=${BAT_THEME}"
 
 # addon configs
@@ -78,10 +78,6 @@ export BAT_PAGER="less -RF"
 
 # asdf
 
-. $HOME/.asdf/asdf.sh
+. /opt/asdf-vm/asdf.sh
 
-. $HOME/.asdf/completions/asdf.bash
-
-export NVM_DIR="$HOME/.config/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. /opt/asdf-vm/completions/asdf.bash
