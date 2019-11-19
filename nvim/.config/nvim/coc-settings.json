@@ -1,8 +1,10 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "typescript", "javascriptreact", "typescriptreact", "reason", "mdx"],
+  "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "typescript", "javascriptreact", "typescriptreact", "reason", "mdx", "vim", "elixir"],
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "backup.tsserver.npm": "/home/ad/.config/nvm/versions/node/v12.6.0/bin/npm",
+  "elixir.pathToElixirLS": "/home/ad/.elixir-ls/release/language_server.sh",
+  "explorer.icon.enableNerdfont": true,
+  "emmet.includeLanguages": { "typescript": "typescriptreact", "reason": "javascriptreact" },
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length=88"],
   "python.pipenvPath": "/home/ad/.local/bin/pipenv",
@@ -13,10 +15,6 @@
     "reason": {
       "command": "/home/ad/.local/bin/reason-language-server",
       "filetypes": ["reason"]
-    },
-    "elixirLS": {
-      "command": "/home/ad/language_servers/elixir_ls/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
     },
     "efm": {
       "command": "efm-langserver",
