@@ -1,10 +1,39 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["python", "javascript", "typescript", "javascriptreact", "typescriptreact", "reason", "mdx", "vim", "elixir"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "reason",
+    "mdx",
+    "vim",
+    "elixir",
+    "rust",
+    "ruby",
+    "json",
+    "hs",
+    "lhs",
+    "haskell"
+  ],
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "elixir.pathToElixirLS": "/home/ad/.elixir-ls/release/language_server.sh",
   "explorer.icon.enableNerdfont": true,
-  "emmet.includeLanguages": { "typescript": "typescriptreact", "reason": "javascriptreact" },
+  "json.format.enable": true,
+  "emmet.includeLanguages": {
+    "typescript": "typescriptreact",
+    "reason": "javascriptreact"
+  },
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "solargraph.definitions": true,
+  "solargraph.commandPath": "/home/ad/.asdf/shims/solargraph",
   "python.formatting.provider": "black",
   "python.formatting.blackArgs": ["--line-length=88"],
   "python.pipenvPath": "/home/ad/.local/bin/pipenv",
@@ -20,6 +49,41 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["vim", "yaml"]
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
+   "haskell": {
+    "command": "hie-wrapper",
+    "args": ["--lsp"],
+    "rootPatterns": [
+      "stack.yaml",
+      "cabal.config",
+      "package.yaml"
+    ],
+    "filetypes": [
+      "hs",
+      "lhs",
+      "haskell"
+    ],
+    "initializationOptions": {
+      "languageServerHaskell": {
+        "hlintOn": true
+      }
     }
+  }
   }
 }
