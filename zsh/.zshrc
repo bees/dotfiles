@@ -27,7 +27,7 @@ bindkey -v
 
 
 #export PATH="/home/ad/.cabal/bin:/home/ad/.local/bin:/home/ad/.yarn/bin:/home/ad/.pyenv/bin:/home/ad/.dotnet:$PATH"
-export PATH="/home/ad/.asdf/installs/nodejs/12.13.0/.npm/bin:/home/ad/.asdf/installs/rust/stable/bin:$PATH"
+export PATH="/home/ad/.asdf/installs/nodejs/12.13.0/.npm/bin:/home/ad/.asdf/installs/rust/stable/bin:/home/ad/.poetry/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -40,7 +40,7 @@ alias cdg='cd-gitroot'
 alias ls='exa'
 alias scale2="gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"[{'Gdk/WindowScalingFactor', <2>}]\""
 alias scale1="gsettings set org.gnome.settings-daemon.plugins.xsettings overrides \"[{'Gdk/WindowScalingFactor', <1>}]\""
-export BAT_THEME="Sublime\ Snazzy"
+export BAT_THEME="GitHub"
 alias bat="bat --theme=${BAT_THEME}"
 
 # addon configs
@@ -81,3 +81,10 @@ export BAT_PAGER="less -RF"
 . /opt/asdf-vm/asdf.sh
 
 . /opt/asdf-vm/completions/asdf.bash
+
+# k8s
+## kubectl autocompletion
+source <(kubectl completion zsh)
+
+# config management
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config:$HOME/.minikube-config/config
