@@ -3,12 +3,10 @@ vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
@@ -16,19 +14,16 @@ return require('packer').startup(function(use)
       vim.cmd('colorscheme rose-pine')
     end
   })
-
   use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
   use 'nvim-treesitter/playground'
   use 'theprimeagen/harpoon'
   use 'mbbill/undotree'
-  use 'tpope/vim-fugitive'
+  use 'lewis6991/gitsigns.nvim'
   use 'levouh/tint.nvim'
   use 'alexghergh/nvim-tmux-navigation'
   use 'ryanoasis/vim-devicons'
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'f-person/auto-dark-mode.nvim'
-
-
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -50,6 +45,5 @@ return require('packer').startup(function(use)
       { 'rafamadriz/friendly-snippets' },
     }
   }
-
   use("folke/zen-mode.nvim")
 end)
