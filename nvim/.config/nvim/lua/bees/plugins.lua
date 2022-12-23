@@ -23,7 +23,11 @@ return require('packer').startup(function(use)
   use 'levouh/tint.nvim'
   use 'alexghergh/nvim-tmux-navigation'
   use 'ryanoasis/vim-devicons'
-  use 'nvim-telescope/telescope-file-browser.nvim'
+  use { 'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons'
+    }
+  }
   use 'f-person/auto-dark-mode.nvim'
   use {
     'VonHeikemen/lsp-zero.nvim',
