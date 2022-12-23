@@ -11,6 +11,11 @@ return require('packer').startup(function(use)
     'rose-pine/neovim',
     as = 'rose-pine',
     config = function()
+      require('rose-pine').setup({
+        dark_variant = 'main',
+        disable_italics = true,
+
+      })
       vim.cmd.colorscheme('rose-pine')
     end
   })
@@ -23,6 +28,7 @@ return require('packer').startup(function(use)
   use 'levouh/tint.nvim'
   use 'alexghergh/nvim-tmux-navigation'
   use 'ryanoasis/vim-devicons'
+  use 'rktjmp/lush.nvim'
   use { 'nvim-tree/nvim-tree.lua',
     requires = {
       'nvim-tree/nvim-web-devicons'
