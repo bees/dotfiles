@@ -31,3 +31,4 @@ eval "$(fnm env --use-on-cd)"
 export PNPM_HOME="/Users/ariandaneshvar/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+export PATH=$PATH:/Users/ariandaneshvar/.spicetify

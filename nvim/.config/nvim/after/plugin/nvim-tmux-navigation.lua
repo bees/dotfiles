@@ -1,3 +1,4 @@
+--[[
 require 'nvim-tmux-navigation'.setup {
   disable_when_zoomed = true, -- defaults to false
   keybindings = {
@@ -9,4 +10,4 @@ require 'nvim-tmux-navigation'.setup {
     next = "<C-Space>",
   }
 }
-
+]]--

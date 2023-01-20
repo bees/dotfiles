@@ -2,6 +2,7 @@ require('bees.plugins')
 require('bees.keybinds')
 
 vim.opt.nu = true
+vim.opt.laststatus = 3
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -26,4 +27,8 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
+-- make lsp pmenu usable
 vim.opt.updatetime = 5
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true

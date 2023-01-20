@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
     'rose-pine/neovim',
     as = 'rose-pine',
     config = function()
+      vim.api.nvim_set_option('background', 'light')
       require('rose-pine').setup({
         dark_variant = 'main',
         disable_italics = true,
@@ -26,15 +27,19 @@ return require('packer').startup(function(use)
   use 'mbbill/undotree'
   use 'lewis6991/gitsigns.nvim'
   use 'levouh/tint.nvim'
-  use 'alexghergh/nvim-tmux-navigation'
+  --use 'alexghergh/nvim-tmux-navigation'
+  use 'numToStr/Navigator.nvim'
   use 'ryanoasis/vim-devicons'
   use 'rktjmp/lush.nvim'
+  use 'simrat39/symbols-outline.nvim'
   use { 'nvim-tree/nvim-tree.lua',
     requires = {
       'nvim-tree/nvim-web-devicons'
     }
   }
-  use 'f-person/auto-dark-mode.nvim'
+  use({ "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  })
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -57,4 +62,51 @@ return require('packer').startup(function(use)
     }
   }
   use("folke/zen-mode.nvim")
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  use 'nvim-lua/lsp-status.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    after = 'lsp-status.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("lsp_signature").setup({})
+    end,
+  }
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require("indent_blankline").setup({
+        char = "│",
+        context_char = "│",
+        space_char_blankline = " ",
+        use_treesitter = true,
+        show_current_context = true,
+        show_current_context_start = false,
+        show_trailing_blankline_indent = false,
+        filetype_exclude = {
+          "TelescopePrompt",
+          "help",
+          "txt",
+          "markdown",
+        },
+        buftype_exclude = { "terminal", "nofile" },
+      })
+    end
+  }
+  use "j-hui/fidget.nvim"
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 end)
