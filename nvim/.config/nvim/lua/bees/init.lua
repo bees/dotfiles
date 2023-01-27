@@ -1,5 +1,5 @@
-require('bees.plugins')
 require('bees.keybinds')
+require('bees.plugins')
 
 vim.opt.nu = true
 vim.opt.laststatus = 3
