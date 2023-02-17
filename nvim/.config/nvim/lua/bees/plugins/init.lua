@@ -4,7 +4,6 @@ local plugins = {
     name = 'rose-pine',
     lazy = false,
     config = function()
-      vim.api.nvim_set_option('background', 'light')
       require('rose-pine').setup({
         dark_variant = 'main',
         disable_italics = true,
@@ -94,6 +93,7 @@ local plugins = {
     },
   } },
   { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
+  'dln/avro-vim',
 }
 
 local plugins_dir = vim.fn.stdpath('config') .. '/lua/bees/plugins'

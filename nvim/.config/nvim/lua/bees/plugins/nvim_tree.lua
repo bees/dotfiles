@@ -46,7 +46,7 @@ return {
     renderer = {
       add_trailing = false,
       group_empty = false,
-      highlight_git = true,
+      highlight_git = false,
       highlight_opened_files = "none",
       root_folder_modifier = ":t",
       indent_markers = {
@@ -120,7 +120,7 @@ return {
       exclude = {},
     },
     git = {
-      enable = true,
+      enable = false,
       ignore = false,
       timeout = 400,
     },
